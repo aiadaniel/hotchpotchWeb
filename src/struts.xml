@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<!-- 声明 Struts2 的属性  例如将 Struts2 后缀改为 .helloween -->
+	<!-- 
+		<constant name="struts.action.extension" value="helloween"></constant>
+	-->
+	
+	
+	<!-- 可以这样声明为开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+
+	<package name="main" extends="struts-default">
+
+
+		<action name="Hello">
+			<result>/hello.jsp</result>
+		</action>
+
+		
+	</package>
+
+</struts>
