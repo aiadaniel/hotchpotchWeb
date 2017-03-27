@@ -16,8 +16,8 @@
 	<package name="main" extends="struts-default">
 
 
-		<action name="Hello">
-			<result>/hello.jsp</result>
+		<action name="Hello" method="display" class="com.vigorous.action.HelloAction">
+			<result name="none">/hello.jsp</result>
 		</action>
 
 		

@@ -9,11 +9,19 @@
 </head>
 <body>
 
-	<s:form action="Hello">
+	
 		<s:textfield name="username" label="UserName"/>
 		<s:password name="password" label="PassWd"></s:password>
 		<s:submit value="Commit"></s:submit>
-	</s:form>
+	
+	
+	
+	<s:combobox label="What's your favor fruit" 
+		headerKey="-1" 
+		headerValue="--- Select ---"
+		list="fruits" 
+		name="yourFruits" />
 
+	
 </body>
 </html>
