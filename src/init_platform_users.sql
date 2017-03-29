@@ -1,0 +1,13 @@
+CREATE DATABASE hotchpotch CHARACTER SET utf8;
+
+USE hotchpotch;
+
+DROP TABLE IF EXISTS tb_platform_users;
+
+CREATE TABLE tb_platform_users (
+	id INTEGER AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(45) NOT NULL,
+	age TINYINT(1) UNSIGNED,
+	registerDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP(6),
+	is_active TINYINT(1) UNSIGNED
+);

@@ -9,15 +9,16 @@
 		<constant name="struts.action.extension" value="helloween"></constant>
 	-->
 	
-	
 	<!-- 可以这样声明为开发模式 -->
 	<constant name="struts.devMode" value="true"></constant>
 
 	<package name="main" extends="struts-default">
 
 
-		<action name="Hello" method="display" class="com.vigorous.action.HelloAction">
+		<action name="Hello" class="com.vigorous.action.HelloAction">
 			<result name="none">/hello.jsp</result>
+			<result name="loginsuccess">/welcome.jsp</result>
+			<result name="success">/welcome.jsp</result>
 		</action>
 
 		
