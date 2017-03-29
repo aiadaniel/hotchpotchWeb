@@ -83,6 +83,16 @@ public class HelloAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
+	//这个方法在execue方法前被调用，目前看没有配置就能调用
+	//另外，还可以建立根据xml配置文件的验证
+	public void validate() {
+		System.out.println("==hello validate");
+		if (name == null || "".equals(name)) {
+			addFieldError("name", "名字不能为空");//任何这类型的语句都导致execute不被调用。 另外没有配置input的result会抛出异常
+		}
+	}
+	
+	//http://localhost:8080/hotchpotchWeb/comboBox.action 用这样的访问方式才有效
 	public String display() {
 		return NONE;
 	}
