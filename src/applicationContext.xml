@@ -27,5 +27,9 @@
 	<bean id="userDao" class="com.vigorous.dao.impl.UserDao">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
+	
+	<bean id="helloAction" class="com.vigorous.action.HelloAction">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
 
 </beans>

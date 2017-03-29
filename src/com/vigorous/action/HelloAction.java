@@ -21,6 +21,17 @@ public class HelloAction extends ActionSupport{
 	private List<String> fruits;
 	private String yourFruits;
 	
+	//test spring+struts2
+	private UserDao userDao;
+	
+	public UserDao getUserDao() {
+		return userDao;
+	}
+
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -77,8 +88,10 @@ public class HelloAction extends ActionSupport{
 	
 	public String execute() {
 		//UserDao userDao = new UserDao();//todo 这样实例化的话，内部对象的注入会有问题
-		BeanFactory factory = new ClassPathXmlApplicationContext("applicationContext.xml");
-		UserDao userDao = factory.getBean(UserDao.class);
+		
+		//直接使用spring注入更好
+//		BeanFactory factory = new ClassPathXmlApplicationContext("applicationContext.xml");
+//		UserDao userDao = factory.getBean(UserDao.class);
 		userDao.userRegister(new UserInfo(getName(),getAge(),new Timestamp(getRegisterDate().getTime()),true));
 		return SUCCESS;
 	}

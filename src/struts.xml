@@ -15,12 +15,14 @@
 	<package name="main" extends="struts-default">
 
 
-		<action name="Hello" class="com.vigorous.action.HelloAction">
+		<!-- 测试使用spring的bean注入 -->
+		<action name="Hello" class="helloAction">
 			<result name="loginsuccess">/welcome.jsp</result>
 			<result name="success">/welcome.jsp</result>
 			<!-- 底下这项在测试验证框架时需要 -->
 			<result name="input">/user/user_register.jsp</result>
 		</action>
+		
 		<action name="comboBox" class="com.vigorous.action.HelloAction" method="display">
 			<result name="none">/hello.jsp</result>
 		</action>
