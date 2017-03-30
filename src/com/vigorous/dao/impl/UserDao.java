@@ -12,10 +12,12 @@ public class UserDao extends JdbcDaoSupport implements IUserDao {
 	
 	//remember JdbcDaoSupport need to inject dataSource
 
+	
+	//这个支持init_platform_users.sql的表结构
 	@Override
 	public void userRegister(UserInfo ui) {
 		JdbcTemplate template = getJdbcTemplate();
-		String sql = "insert into tb_platform_users "
+		String sql = "insert into tb_platform_users_test "
 				+ " ( name, age, registerDate, is_active ) values "
 				+ " ( ?, ?, ?, ? ) ";
 		if (template == null) {

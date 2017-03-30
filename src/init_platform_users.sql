@@ -2,9 +2,9 @@ CREATE DATABASE hotchpotch CHARACTER SET utf8;
 
 USE hotchpotch;
 
-DROP TABLE IF EXISTS tb_platform_users;
+DROP TABLE IF EXISTS tb_platform_users_test;
 
-CREATE TABLE tb_platform_users (
+CREATE TABLE tb_platform_users_test (
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(45) NOT NULL,
 	age TINYINT(1) UNSIGNED,

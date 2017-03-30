@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<!-- spring自动装配 -->
+	<context:annotation-config />
 
 	<bean id="helloBean" class="com.vigorous.bean.HelloWorld">
 		<property name="name" value="gagaHaha" />
@@ -31,5 +37,11 @@
 	<bean id="helloAction" class="com.vigorous.action.HelloAction">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
+	
+	<bean id="platformUserDao" class="com.platform.dao.impl.PlatformUserDao"></bean>
+	
+	<bean id="platformService" class="com.platform.service.impl.PlatformService" autowire="byType"></bean>
+	
+	<bean id="platformUserAction" class="com.platform.action.PlatformUserAction" autowire="byName"></bean>
 
 </beans>

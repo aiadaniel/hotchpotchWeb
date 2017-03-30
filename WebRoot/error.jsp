@@ -9,7 +9,17 @@
 </head>
 <body>
 
-	<s:property value="name"/>
-	<s:property value="nickname"/>
+<s:if test="hasActionErrors()">
+   <div class="errors">
+      <s:actionerror/>
+   </div>
+</s:if>
+
+<s:if test="hasActionMessages()">
+   <div class="welcome">
+      <s:actionmessage/>
+   </div>
+</s:if> 
+
 </body>
 </html>
