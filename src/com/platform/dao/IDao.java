@@ -7,7 +7,7 @@ public interface IDao<T> {
 	public T find(Class<T> clazz,int id);
 	public T find(Class<T> clazz,String nickname);
 	
-	public void create(T basebean);
+	public int create(T basebean);
 	
 	public void save(T basebean);
 	

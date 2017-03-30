@@ -10,6 +10,7 @@ import java.util.List;
 import com.platform.bean.PlatformUser;
 import com.platform.dao.IDao;
 import com.platform.utils.DBManager;
+import com.platform.utils.ErrCodeBase;
 
 public class PlatformUserDao<T extends PlatformUser> implements IDao<T> {
 
@@ -68,17 +69,22 @@ public class PlatformUserDao<T extends PlatformUser> implements IDao<T> {
 	
 	//思考：TODO: 同时要插入两个表，如何处理事务才可靠？
 	@Override
-	public void create(T basebean) {
+	public int create(T basebean) {
 		//insert into
 		String sql = "INSERT INTO tb_platform_users (nickname) VALUES (?)";
 		Connection connection = null;
 		PreparedStatement statement = null;
+		PreparedStatement statementAuths = null;
 		ResultSet rs = null;
+		ResultSet rsAuth = null;
 		int id = -1;
 		try {
 			connection = DBManager.getConnection();
 			statement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);//need to add flag for get id
 			statement.setString(1, basebean.getNickname());
+			
+			//add transaction support
+			connection.setAutoCommit(false);
 
 			statement.executeUpdate();
 			
@@ -87,21 +93,34 @@ public class PlatformUserDao<T extends PlatformUser> implements IDao<T> {
 			rs.next();
 			id = rs.getInt(1);
 			
-			if (statement != null)
-				statement.close();
 			if (id <= 0) {
-				return;
+				connection.rollback();//we need to ensure these two tables all insert success
+				return ErrCodeBase.ERR_SQL;
 			}
 			
-			String sql2 = "INSERT INTO tb_platform_users_auths (user_id,identity_type,identifier,credential,randCredential) VALUES (?,?,?,?,?)";
-			statement = connection.prepareStatement(sql2);
-			statement.setInt(1, id);
-			statement.setInt(2, basebean.getLogin_type());
-			statement.setString(3, basebean.getIdentifier());
-			statement.setString(4, basebean.getCredential());
-			statement.setString(5, basebean.getRandCredential());
 			
-			statement.executeUpdate();
+			String sql2 = "INSERT INTO tb_platform_users_auths (user_id,identity_type,identifier,credential,randCredential) VALUES (?,?,?,?,?)";
+			statementAuths = connection.prepareStatement(sql2,Statement.RETURN_GENERATED_KEYS);
+			statementAuths.setInt(1, id);
+			statementAuths.setInt(2, basebean.getLogin_type());
+			statementAuths.setString(3, basebean.getIdentifier());
+			statementAuths.setString(4, basebean.getCredential());
+			statementAuths.setString(5, basebean.getRandCredential());
+			
+			statementAuths.executeUpdate();
+			
+			rsAuth = statementAuths.getGeneratedKeys();
+			rsAuth.next();
+			int tempid = rsAuth.getInt(1);
+			
+			if (tempid <=0) {
+				connection.rollback();
+				return ErrCodeBase.ERR_SQL;
+			}
+			
+			connection.commit();
+			connection.setAutoCommit(true);//resume
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -115,12 +134,17 @@ public class PlatformUserDao<T extends PlatformUser> implements IDao<T> {
 					statement.close();
 				if (connection != null)
 					connection.close();
+				if (statementAuths != null)
+					statementAuths.close();
+				if (rsAuth != null)
+					rsAuth.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
 		}
+		return ErrCodeBase.ERR_SUC;
 	}
 
 	@Override

@@ -27,7 +27,9 @@ public class PlatformService<T extends PlatformUser> extends BaseService<T> {
 				e.printStackTrace();
 			}
 			basebean.setRandCredential(salt);
-			dao.create(basebean);
+			if (dao.create(basebean) != ErrCodeBase.ERR_SUC) {
+				return ErrCodeBase.ERR_FAIL;
+			}
 		}
 		
 		
