@@ -11,9 +11,11 @@
 	
 	<!-- 可以这样声明为开发模式 -->
 	<constant name="struts.devMode" value="true"></constant>
+	
+	<!-- 如果需要支持动态方法调用，即！形式 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />   
 
 	<package name="main" extends="struts-default">
-
 
 		<!-- 测试使用spring的bean注入 -->
 		<action name="Hello" class="helloAction">
@@ -26,7 +28,16 @@
 		<action name="comboBox" class="com.vigorous.action.HelloAction" method="display">
 			<result name="none">/hello.jsp</result>
 		</action>
+		
+		<action name="verify" class="com.platform.action.VerifyCodeAction">
+			<result name="success" type="stream">
+				<param name="contentType">image/jpeg</param>
+        		<param name="inputName">inputStream</param>
+			</result>
+		</action>
 
+<!-- 		<action name="login" class="com.platform.action.PlatformUserAction" method="autologin"> -->
+<!-- 		</action> -->
 		
 	</package>
 

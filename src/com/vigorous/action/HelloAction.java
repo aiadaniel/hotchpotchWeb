@@ -5,9 +5,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import com.opensymphony.xwork2.ActionSupport;
 import com.platform.bean.UserInfo;
 import com.vigorous.dao.impl.UserDao;

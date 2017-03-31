@@ -37,8 +37,7 @@ public class PlatformService<T extends PlatformUser> extends BaseService<T> {
 		return ErrCodeBase.ERR_SUC;
 	}
 	
-	//@Override
-	public int find(PlatformUser user) {
+	public int login(PlatformUser user,StringBuffer sb) {
 		PlatformUser tempUser = (PlatformUser) dao.find(null, user.getNickname());
 		if (tempUser == null) {
 			return ErrCodeBase.ERR_URER_NOEXISTS;
@@ -50,6 +49,7 @@ public class PlatformService<T extends PlatformUser> extends BaseService<T> {
 			//System.out.println("2== " + tempUser.getCredential());
 			if (user.getLogin_type()==Constant.LOGIN_NAME && 
 					tempUser.getCredential().equals(cre) ) {
+				sb.append(cre);
 				return ErrCodeBase.ERR_SUC;
 			}
 			//other login type
@@ -60,7 +60,21 @@ public class PlatformService<T extends PlatformUser> extends BaseService<T> {
 		
 		
 		return ErrCodeBase.ERR_FAIL;
+	}
+	
+	public PlatformUser loginWithCookie(String nickname,String cre) {
+		PlatformUser tempUser = (PlatformUser) dao.find(null, nickname);
+		if (tempUser == null) {
+			return null;
+		}
+		//validate password
 		
+		if (/*user.getLogin_type()==Constant.LOGIN_NAME && */
+				tempUser.getCredential().equals(cre) ) {
+			return tempUser;
+		}
+		
+		return null;
 	}
 
 }
