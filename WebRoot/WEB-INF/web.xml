@@ -16,6 +16,8 @@
       </listener-class>
    	</listener>
 	
+	
+	<!-- 还有另一种方式，具体去查openSessionInViewInterceptor，配置的地方不同，interceptor配置在spring -->
 	<filter>
 		<filter-name>openSessionInViewFilter</filter-name>
 		<filter-class>

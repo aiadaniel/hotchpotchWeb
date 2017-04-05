@@ -110,5 +110,12 @@
 			</props>
 		</property>
 	</bean>
+	
+	<bean id="daoimpl" class="com.vigorous.dao.impl.DaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>	
+	<bean id="categoryService" class="com.vigorous.service.impl.CategoryService">
+		<property name="dao" ref="daoimpl"></property>
+	</bean>
 
 </beans>

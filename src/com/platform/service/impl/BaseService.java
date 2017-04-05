@@ -2,18 +2,19 @@ package com.platform.service.impl;
 
 import java.util.List;
 
+import com.platform.bean.BaseBean;
 import com.platform.dao.IDao;
 import com.platform.service.IService;
 
-public abstract class BaseService<T> implements IService<T> {
+public abstract class BaseService<T extends BaseBean> implements IService<T> {
 	
-	IDao dao;
+	protected IDao<T> dao;
 
-	public IDao getDao() {
+	public IDao<T> getDao() {
 		return dao;
 	}
 
-	public void setDao(IDao userDao) {
+	public void setDao(IDao<T> userDao) {
 		this.dao = userDao;
 	}
 
@@ -50,6 +51,6 @@ public abstract class BaseService<T> implements IService<T> {
 		return dao.list(sql, first, max, params);
 	}
 	
-	
+
 
 }

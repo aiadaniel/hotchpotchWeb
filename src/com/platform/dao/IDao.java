@@ -2,6 +2,8 @@ package com.platform.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
+
 public interface IDao<T> {
 	
 	public T find(Class<T> clazz,int id);
@@ -18,5 +20,7 @@ public interface IDao<T> {
 	public int getTotalCount(String sql,Object... params);
 	
 	public List<T> list(String sql,int first,int max,Object... params);
+	
+	public Query createQuery(String query);
 
 }

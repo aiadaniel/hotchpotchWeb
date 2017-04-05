@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.platform.bean.BaseBean;
+
 @Entity
 @Table(name="tb_reply")
 //@org.hibernate.annotations.Entity

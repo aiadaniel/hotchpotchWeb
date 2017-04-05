@@ -11,6 +11,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.platform.bean.BaseBean;
+
 @Entity
 @Table(name="tb_board")
 public class Board extends BaseBean {

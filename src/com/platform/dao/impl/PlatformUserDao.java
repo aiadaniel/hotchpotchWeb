@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import org.hibernate.Query;
+
 import com.platform.bean.PlatformUser;
 import com.platform.dao.IDao;
 import com.platform.utils.DBManager;
@@ -167,6 +169,11 @@ public class PlatformUserDao<T extends PlatformUser> implements IDao<T> {
 
 	@Override
 	public List<T> list(String sql, int first, int max, Object... params) {
+		return null;
+	}
+
+	@Override
+	public Query createQuery(String query) {
 		return null;
 	}
 
