@@ -1,6 +1,7 @@
 package com.vigorous.bean;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

@@ -92,11 +92,7 @@
 		</property>
 		<property name="packagesToScan">
 			<list>
-				<value>com.vigorous.bean.Category</value>
-				<value>com.vigorous.bean.Board</value>
-				<value>com.vigorous.bean.Thread</value>
-				<value>com.vigorous.bean.Person</value>
-				<value>com.vigorous.bean.Reply</value>
+				<value>com.vigorous.bean</value>
 			</list>
 		</property>
 	</bean>
