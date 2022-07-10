@@ -42,7 +42,7 @@
         <mysql.jdbc.version>5.1.34</mysql.jdbc.version>  
         <hibernate.version>4.3.5.Final</hibernate.version>
         <spring.version>4.1.6.RELEASE</spring.version>
-        <struts2.version>2.5.10.1</struts2.version>
+        <struts2.version>2.5.22</struts2.version>
   </properties>  
   
   <dependencies>
